@@ -1,0 +1,378 @@
+/*afroze*/
+.navbar{
+    background-color:#3C0753;
+}
+.navbar2{
+    background-color:#5C1979;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.nav-link , .navbar-brand{
+    color: white;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: white;
+}
+.offcanvas{
+    background-color: #3C0753;
+    color: white;
+}
+
+.recipe_matches{
+    color:white
+}
+
+/* for available recipes */
+.container2 {
+    background-color: #6C2F2F;
+    width: 70%; /* Adjust the width of the container as needed */
+    padding: 50px;
+    display: flex;
+    flex-direction: column; /* to place content vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    margin: auto;
+    margin-top: 20vh;
+    border-radius: 20px;
+}
+.arh {
+    color: white;
+    position: absolute; /* Change to absolute positioning */
+    top: 0;
+    left: 0;
+    margin: 20px;
+    font-family: 'Lato', sans-serif; /* Use Lato font family */
+    font-weight: 400; /* Set font weight to 400 */
+    font-size: 24px; /* Set font size to 24 pixels */
+
+    width: 234px;
+    height: 24px;
+    top: 108%;
+    left: 18%
+}
+.imageicon{
+    width: 43px;
+    height: 40px;
+    top: 26px;
+    left: 1364px;
+    gap: 0px;
+    opacity: 0px;
+
+}
+
+.RecipeDetail{
+    background-color: black;
+    color: white;
+}
+
+
+.btn1 {
+    background-color: #A91515;
+    color: white;
+    padding: 6px;
+    margin: 10px;
+
+}
+.btn2 {
+    background-color:#5C1979;
+    color: white;
+    padding: 6px;
+    margin: auto;
+}
+.mainc{
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+
+.afc { 
+    background-color:#230B0B;
+    width: 70%; /* Adjust the width of the container as needed */
+    padding: 50px;
+    display: flex;
+    flex-direction: column; /*to place content vertically */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    margin-top: 20vh; /* Adjust the distance from the top */
+}
+/* for recipe table */
+.recipe-container {
+    padding: 20px;
+}
+
+.recipe-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.recipe-table th, .recipe-table td {
+    padding: 8px;
+    text-align: left;
+    color: white;
+}
+
+.recipe-table th {
+    color: white;
+}
+
+.recipe-table tr:nth-child(even) {
+    background-color: #6E0606;
+}
+
+.recipe-table tr:nth-child(odd) {
+    background-color: #531717; 
+}
+
+.recipe-table tr:hover {
+    background-color: gray;
+}
+
+.pdf{
+    color:white;
+    border: #6C2F2F;
+    outline-color: #6C2F2F;
+}
+.pdf:hover{
+    color:#6C2F2F;
+}
+.heart-icon{
+    color:white;
+}
+.heart-icon:hover {
+    color: #6C2F2F; /* Change to the desired color */
+  }
+
+
+  /* premium feature */
+  .pnavbar{
+    background-color:#533907;
+}
+.pnavbar2{
+    background-color:#8E6006;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+ph1 {
+    margin-bottom: 20px;
+    color: white;
+}
+.poffcanvas{
+    background-color:#D39C32;
+    color: white;
+}
+
+.pcontainer { 
+    background-color: #D39C32;
+    width: 70%; /* Adjust the width of the container as needed */
+    padding: 50px;
+    display: flex;
+    flex-direction: column; /* Place content vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    margin: auto; /* Center horizontally */
+    margin-top: 20vh; /* Adjust the distance from the top */
+}
+
+
+/* for available recipes */
+.pcontainer2 {
+    background-color:#533907;    ;
+    width: 85%; /* Adjust the width of the container as needed */
+    padding: 50px;
+    display: flex;
+    flex-direction: column; /* to place content vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    margin: auto;
+    margin-top: 20vh;
+    border-radius: 20px;
+}
+
+.parh {
+    color: white;
+    position: absolute; /* Change to absolute positioning */
+    top: 0;
+    left: 0;
+    margin: 20px;
+    font-family: 'Lato', sans-serif; /* Use Lato font family */
+    font-weight: 400; /* Set font weight to 400 */
+    font-size: 24px; /* Set font size to 24 pixels */
+    
+    width: 234px;
+    height: 24px;
+    top: 113%;
+    left: 18%
+}
+.pimageicon{
+    width: 43px;
+    height: 40px;
+    top: 26px;
+    left: 1364px;
+    gap: 0px;
+    opacity: 0px;
+
+}
+
+
+.pbtn1 {
+    background-color:#533907;
+    color: white;
+    padding: 6px;
+    margin: 10px;
+
+}
+.pbtn2 {
+    background-color:#533907;
+    color: white;
+    padding: 6px;
+    margin: auto;
+}
+.pmainc{
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+
+/* premium available recipe */
+.precipe-container {
+    padding: 20px;
+}
+
+.precipe-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.precipe-table th, .recipe-table td {
+    padding: 8px;
+    text-align: left;
+    color: white;
+}
+
+.precipe-table th {
+    color: white;
+}
+
+.precipe-table tr:nth-child(even) {
+    background-color: #533907; /* Alternate color 1 */
+}
+
+.precipe-table tr:nth-child(odd) {
+    background-color: #533907; /* Alternate color 2 */
+}
+
+.precipe-table tr:hover {
+    background-color: gray;
+}
+
+.ppdf{
+    color:white;
+    border: #533907;
+    outline-color: #533907;
+}
+
+.ppdf:hover{
+    color:#533907;
+}
+
+.pheart-icon{
+    color:white;
+}
+
+.pheart-icon:hover {
+    color: #533907; /* Change to the desired color */
+}
+
+.ccaf {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.cbaf {
+    background-color: #8E6006;
+}
+
+/*samreens classes*/
+
+.small-containers {
+    display: flex;
+    flex-direction: column; 
+    margin-top: 20px;
+}
+
+.small-container {
+    width: 100%; 
+    background-color: #800000;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px; 
+}
+
+.small-container p {
+    color: white;
+    font-size: lato;
+}
+
+.second-container {
+    background-color: #333;
+    padding: 20px;
+    margin-top: 50px; /* Adjust the space from the image container */
+    margin-left: 20px; /* Add space from the left side */
+    margin-right: 20px; /* Add space from the right side */
+}
+
+.second-container h2 {
+ color:white;
+ font-family: lato;
+}
+
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(128, 128, 128, 0.5); /* Greyish color with transparency */
+    padding: 20px;
+    text-align: center;
+}
+
+.content {
+    color: white;
+    font-family: lato;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+  
+.buttons button {
+   background-color: red;
+   color: white;
+   padding: 10px 20px;
+   margin: 0 10px;
+   border: none;
+   border-radius: 5px;
+}
+
+.container-samreen {
+   position: relative;
+   top: 21%; /* Space from the top */
+   left: 0;
+   right: 0;
+   width: 100%;
+   height: 60vh; /* 30% of the viewport height */
+   overflow: hidden;
+   box-sizing: border-box; /* Include padding and border in the total width and height */
+   margin: 0; /* Remove margin */
+   padding: 0; /* Remove padding */
+}
+  
+.container-samreen img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}

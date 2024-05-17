@@ -1,0 +1,58 @@
+.contact-container {
+    text-align: center;
+    margin-top: 1%;
+    color:white;
+    font-family: lato;
+  }
+  
+  .contact-heading {
+    font-size: 36px;
+    color: white; 
+    font-family: lato;
+  }
+  
+  .contact-subheading {
+    margin-top: 2%;
+    font-size: 18px;
+    color:white;
+    font-family: lato;
+  }
+  .parent-container {
+    .parent-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50%; /* Adjust the width as needed */
+        height: 60vh; /* Adjust the height as needed */
+        background-color:#2A0000; /* Red color with transparency */
+        padding: 20px;
+        text-align: center;
+        color: white; /* White text color */
+        font-family: lato;
+        line-height: 1.5; /* Increase line height for better spacing */
+    }
+
+}
+
+.white-transparent-container {
+    /* top: 50%; */
+    background-color: rgba(42, 0, 0, 0.5); /* Red color with transparency */
+    padding: 20px;
+    text-align: center;
+    color: white; /* White text color */
+    font-family: lato;
+    line-height: 3; /* Increase line height for better spacing */
+}
+
+body {
+    overflow-y: scroll; 
+    background-color: black;
+    margin: 0; /* Reset default body margin */
+    padding: 0; /* Reset default body padding */
+  }
+  
+  .icon {
+    font-size: 32px;
+    color: white;
+  }
