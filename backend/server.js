@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use("/api", router);
 
-mongoose.connect("mongodb://127.0.0.1:27017/RecipeGen")
+mongoose.connect("mongodb+srv://Danaa:danaa@cluster0.rdtwozo.mongodb.net/RecipeGen")
     .then(() => {
         app.listen(5000);
         console.log("Listening to the port 5000");
@@ -50,4 +50,24 @@ mongoose.connect("mongodb://127.0.0.1:27017/RecipeGen")
           return res.status(500).json({ message: 'Internal server error' });
       }
   });
+
+  app.put('/updateRank/:recipeId', async (req, res) => {
+    const { recipeId } = req.params;
+    const { rating } = req.body;
+
+    try {
+        const recipe = await recipesModel.findById(recipeId);
+        if (!recipe) {
+            return res.status(404).json({ message: 'recipe not found' });
+        }
+        const updatedRank = ((parseFloat(rating) + parseFloat(recipe.rating)) / 2.0);
+        recipe.rating = updatedRank;
+        const updatedrecipe = await recipe.save();
+
+        res.json({ message: 'Rating updated successfully'});
+    } catch (error) {
+        console.error('Error updating rating:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+});
   

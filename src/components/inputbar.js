@@ -4,7 +4,7 @@ import { BiHeart } from 'react-icons/bi';
 // import { BiSolidFilePdf } from "react-icons/bi";
 import { Link } from 'react-router-dom';
 import '../style/selfstyling.css'
-// import icon from './icon.png';
+import icon from '../assets/icon.png';
 // import { PDFViewer, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 // import { withRouter } from 'react-router-dom';
 // import { useHistory } from 'react-router-dom';
@@ -120,13 +120,20 @@ function Ibar() {
     const handleLike = (recipeId) => {
         const newLike = 1;
         console.log(recipeId);
-        axios.put(`http://localhost:8080/updateLike/${recipeId}`, { like: newLike })
+        axios.put(`http://localhost:5000/updateLike/${recipeId}`, { like: newLike })
           .then(response => {
             console.log('Recipe liked successfully:', response.data);
           })
           .catch(err => console.error('Error updating like:', err));
     };
-    //// to
+    /////////
+    const handlerank = (recipeId, selectedRating) => {
+        axios.put(`http://localhost:5000/updateRank/${recipeId}`, { rating: selectedRating })
+            .then(response => {
+                console.log('Rating updated successfully:', response.data);
+            })
+            .catch(err => console.error('Error updating rating:', err ));
+    };
 
     return (
         <div>
@@ -155,13 +162,15 @@ function Ibar() {
             <h1>Available Recipes</h1>
             <p className="recipe_matches">{getMatchedRecipes().length} matched recipes found.</p>
             {getMatchedRecipes().length > 0 ? (
-                <table className="table table-borderless recipe-table">
+                <table className="recipe-table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">RECIPE NAME</th>
                             {/* <th>pdf key lyeye</th> */}
-                            <th>Like</th>
+                            <th></th>
+                            <th></th>
+                            {/* <th></th> */}
                             {/* <th scope="col">Ingredients</th> */}
                         </tr>
                     </thead>
@@ -170,9 +179,10 @@ function Ibar() {
                             <tr key={recipe._id}>
                                 <th scope="row">{index + 1}</th>
                                 <td>{recipe.Title}
-                                    <div style={{ fontSize: '14px' }}>
+                                    <div style={{ fontSize: '14px'}}>
                                         ({recipe.matchedIngredientCount} matched ingredients)
-                                        <Link to={`/RecipePage`}
+                                        <br></br>
+                                        <Link style={{color:'white'}} to={`/RecipeDetail`}
                                         onClick={() => {
                                             const cookieRecipe = {
                                                 _id: recipe._id,
@@ -193,18 +203,28 @@ function Ibar() {
                                 {/* <td>{recipe.Ingredients}</td> */}
                                 {/* <td ><button className="btn btn-link heart-icon" onClick={() => handleLike(recipe._id)}><BiHeart/></button></td> */}
                                 <td><button className="btn btn-link heart-icon" onClick={() => handleLike(recipe._id)}><BiHeart/></button></td>
+                                <td>
+                                <select className="rating" onChange={(e) => handlerank(recipe._id, e.target.value)}>
+                                            <option value="0" className="star ">&#9734;</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                </td>
                                 {/* <td>
                                     {(() => {
                                         try {
                                         return (
                                             <img
-                                            src={require(`./FoodImages/${recipe.Image_Name}.jpg`)}
+                                            src={require(`../assets/FoodImages/${recipe.Image_Name}.jpg`)}
                                             alt="Recipe"
                                             />
                                         );
                                         } catch (error) {
                                         // console.error(error); // Log the error for debugging
-                                        return (<img src={icon} alt="Icon" />);
+                                            return (<img src={icon} alt="Icon" />);
                                         }
                                     })()}
                                     </td> */}

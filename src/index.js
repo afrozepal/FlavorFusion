@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 import store from './Store/store.js'; 
 import Generator from './pages/Page2.js';
 import Contact from './components/Contact.js'
+import RecipeDetail from './components/RecipeDetail.js'
 
 import {
   createBrowserRouter,
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
   {
     path: "Contact",
     element:<Contact/>
+  },
+  {
+    path: "RecipeDetail",
+    element:<RecipeDetail/>
   }
 ]);
 

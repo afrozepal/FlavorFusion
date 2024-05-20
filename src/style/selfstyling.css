@@ -295,6 +295,25 @@ ph1 {
 .cbaf {
     background-color: #8E6006;
 }
+.rating {
+    /* Hide the default arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+    width: 27px;
+    height: 27px;
+
+    border-radius: 50%;
+    
+    border: 2px solid white;
+    background-color: #6E0606;
+    align-items: center;
+    text-align: center;
+    
+    cursor: pointer;
+
+  }
 
 /*samreens classes*/
 

@@ -1,5 +1,5 @@
 import {React , useRef} from 'react';
-import icon from './icon.png';
+import icon from '../assets/icon.png';
 import Cookies from 'js-cookie';
 import { BiSolidFilePdf } from "react-icons/bi";
 import {useReactToPrint } from "react-to-print";

@@ -6,7 +6,8 @@ const recipesSchema= new mongoose.Schema(
         Ingredients:String,
         Instructions:String,
         Image_Name:String,
-        like:Number
+        like:Number,
+        rating:Number
     }
 )
 

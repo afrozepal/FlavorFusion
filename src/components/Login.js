@@ -5,6 +5,7 @@ import warningicon from '../assets/warning.png';
 import { useDispatch } from "react-redux";
 import { authActions } from "../Store/store.js";
 import { useNavigate } from "react-router-dom";
+import {Link} from "react-router-dom";
 import axios from 'axios';
 
 export default function Login (){
@@ -15,7 +16,7 @@ export default function Login (){
   const [warningImgU, setWarningImgU] = useState(false);
   const [usernameBorderColor, setUsernameBorderColor] = useState('');
   const [passwordBorderColor, setPasswordBorderColor] = useState('');
- 
+  const navigate = useNavigate();
   const sendRequest = async () => {
     try {
       const res = await axios.post("http://localhost:5000/api/login", {
@@ -37,6 +38,7 @@ export default function Login (){
         const response = await sendRequest(); // Send login request
         dispatch(authActions.login());
         alert('User successfully logged in!');
+        navigate('/Generator'); // Programmatically navigate to Generator page
         // Redirect user to dashboard or another route
       } catch (error) {
         // Handle login error (e.g., display error message)
