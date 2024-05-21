@@ -52,14 +52,13 @@ h1 {
     top: 108%;
     left: 18%
 }
+
 .imageicon{
-    width: 43px;
-    height: 40px;
+    width: 35px;
     top: 26px;
     left: 1364px;
     gap: 0px;
     opacity: 0px;
-
 }
 
 .RecipeDetail{

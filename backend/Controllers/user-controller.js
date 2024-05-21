@@ -20,7 +20,10 @@ const signup = async (req,res) => {
     const user = new User({
         name: req.body.name,
         email: req.body.email,
-        password: hashedPassword
+        password: hashedPassword,
+        rating: '0',
+        liked_recipes: '0',
+        searched_ingredients: '0'
     });
     try {
         await user.save();

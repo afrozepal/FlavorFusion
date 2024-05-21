@@ -14,7 +14,22 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-        // minlength: 6
+        // minlength: 6s
+    },
+    rating: {
+        type: String,
+        required: false,
+        default: '0'
+    },
+    liked_recipes: {
+        type: String,
+        required: false,
+        default: '0'
+    },
+    searched_ingredients: {
+        type: String,
+        required: false,
+        default: '0'
     }
 });
 
