@@ -7,6 +7,8 @@ import { authActions } from "../Store/store.js";
 import { useNavigate } from "react-router-dom";
 import {Link} from "react-router-dom";
 import axios from 'axios';
+import {jwtDecode} from 'jwt-decode'
+import Cookies from 'js-cookie'
 
 export default function Login (){
   const dispatch = useDispatch();
@@ -35,11 +37,18 @@ export default function Login (){
     event.preventDefault();
     if (username !== '' && password !== '') {
       try {
-        const response = await sendRequest(); // Send login request
+        const response = await sendRequest(); 
+        const token = response.token;
+        const decodedToken = jwtDecode(token);
+        // console.log("Decoded Token:", decodedToken);
+        const userId = decodedToken.id;
+        const usercookie = {
+          id: userId,
+        };
+        Cookies.set('usercookie', JSON.stringify(usercookie));
         dispatch(authActions.login());
         alert('User successfully logged in!');
-        navigate('/Generator'); // Programmatically navigate to Generator page
-        // Redirect user to dashboard or another route
+        navigate('/Homepage');
       } catch (error) {
         // Handle login error (e.g., display error message)
         if (error.response && error.response.data) {
@@ -161,5 +170,5 @@ export default function Login (){
         </div>
       </div>
     </div>
-  );
+  );  
 }

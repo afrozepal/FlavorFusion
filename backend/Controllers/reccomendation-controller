@@ -1,0 +1,15 @@
+const RecommendationService = require('../services/RecommendationService');
+
+const getRecommendations = async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const recommendations = await RecommendationService.generateRecommendations(userId);
+        res.status(200).json({ recommendations });
+    } catch (err) {
+        res.status(500).json({ message: 'An error occurred while generating recommendations', error: err.message });
+    }
+};
+
+module.exports = {
+    getRecommendations
+};

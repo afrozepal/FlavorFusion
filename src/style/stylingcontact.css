@@ -56,3 +56,12 @@ body {
     font-size: 32px;
     color: white;
   }
+
+  a.contact-link {
+    color: white !important; /* Ensure the text color is white */
+    text-decoration: none; /* Remove underline from links */
+}
+
+a.contact-link:hover {
+    text-decoration: underline; /* Add underline on hover for better visibility */
+}

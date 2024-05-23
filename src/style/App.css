@@ -13,7 +13,14 @@
   }
 }
 
+.extrass:hover {
+  color: white;
+}
 
+.nav-link.disabled {
+  color: #3C0753; /* Change this to the desired color */
+  pointer-events: none; /* This ensures the link is not clickable */
+}
 
 .App-header {
   background-color: #5f82c8;

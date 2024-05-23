@@ -44,10 +44,12 @@ h1 {
 }
 
 .img-fluid {
-    height: 100vh;
-    object-fit: cover; 
-    margin-top:0;
+    max-height: 100vh; /* Set maximum height to 100% of the viewport height */
+    width: auto; /* Allow the width to adjust proportionally based on the image's aspect ratio */
+    margin-top: 0; /* Remove any top margin */
+    object-fit: contain; /* Maintain aspect ratio and fit the entire image within the container */
 }
+
 
 .arh {
     color: white;
@@ -129,7 +131,7 @@ body {
     font-style: normal;
 }
 
-.card {
+.fdc {
     background-color: #ffffff;
     border: none;
     color: rgb(0, 0, 0);
@@ -138,7 +140,7 @@ body {
     right:20%;
     text-align: center;
     width: auto;
-    max-width: 600px;
+    max-width: 80%; /* Set a maximum width for the card container */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     padding:2%;
 }
@@ -201,3 +203,23 @@ a {
     font-family: Lato;
     font-size: smaller;
 }
+
+/* for responsiveness of cards */
+@media (max-width: 991.98px) {
+    .img-fluid {
+      height: auto;
+      width: auto;
+    }
+}
+  
+@media (max-width: 747.98px) {
+  .fdc {
+    max-width: none; /* Remove max-width for smaller screens */
+    margin-top: 0; /* Adjust margin as needed */
+    margin-bottom: 20px; /* Adjust margin as needed */
+    margin-left: 10%;
+  }
+}
+
+  
+  

@@ -3,6 +3,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto'); 
 const JWT_SECRET_KEY = "your_actual_secret_key_here";
+const ReccommendationService = require('../Services/ReccommendationService');
+const Cookies = require('js-cookie');
 
 const signup = async (req,res) => {
     // console.log('signup func here we go')
@@ -21,9 +23,9 @@ const signup = async (req,res) => {
         name: req.body.name,
         email: req.body.email,
         password: hashedPassword,
-        rating: '0',
-        liked_recipes: '0',
-        searched_ingredients: '0'
+        recipe_ratings: [],
+        liked_recipes: [],
+        searched_ingredients: []
     });
     try {
         await user.save();
@@ -35,45 +37,37 @@ const signup = async (req,res) => {
 
 const login = async (req, res) => {
     const { email, password } = req.body;
-    // console.log('login func here we go')
     let existingUser;
     try {
-        existingUser = await User.findOne({email: email});
+        existingUser = await User.findOne({ email: email });
     } catch (err) {
         console.log(err);
     }
     if (!existingUser) {
-        return res.status(400).json({message: "Invalid Username"})
+        return res.status(400).json({ message: "Invalid Username" });
     }
-    else console.log('valid username')
     const isPasswordCorrect = bcrypt.compareSync(password, existingUser.password);
-    if(!isPasswordCorrect){
-        return res.status(400).json({message: "Invalid Password"})
+    if (!isPasswordCorrect) {
+        return res.status(400).json({ message: "Invalid Password" });
     }
-    else console.log('valid password')
-
-    const token = jwt.sign({id: existingUser._id}, JWT_SECRET_KEY, {
-        expiresIn: "1h" //1hr
+    const token = jwt.sign({ id: existingUser._id }, JWT_SECRET_KEY, {
+        expiresIn: "1h"
     });
-    console.log("Generated Token\n", token);
-    if (req.cookies[`${existingUser._id}`]) {
-        req.cookies[`${existingUser._id}`] = ""
-    }
     res.cookie(String(existingUser._id), token, {
-        path:"/",
-        expires: new Date(Date.now() + 1000 * 60 * 60), // 1 hour expiration
+        path: "/",
+        expires: new Date(Date.now() + 1000 * 60 * 60),
         httpOnly: true,
         sameSite: "lax",
-    })
+    });
 
     return res
-    .status(200)
-    .json({message: "Successfully Logged In", user: existingUser, token});
-}
+        .status(200)
+        .json({ message: "Successfully Logged In", user: existingUser, token });
+};
+
 
 const nodemailer = require('nodemailer');
-
-
+const { use } = require("../Routes/user-routes");
 
 const transporter = nodemailer.createTransport({
     host: "sandbox.smtp.mailtrap.io",
@@ -146,6 +140,36 @@ const forgotPassword = async (req, res) => {
     }
 };
 
+const getReccommendations = async (req, res) => {
+    // const usercookie = JSON.parse(Cookies.get('usercookie'));
+    // console.log('Cookie user:', usercookie); // Log the cookie recipe to check its value
+    const usercookie='a4@gmail.com';
+    userEmail=usercookie;
+    // if(usercookie==undefined)
+    //     {
+            
+    //     }
+    // else{
+    //     const userEmail=usercookie.email;
+    // }
+    try {
+        const user = await User.findOne({ email: userEmail });
+        if (!user) {
+            console.log('User not found');
+            return res.status(404).json({ message: 'User not found' });
+        }
+        console.log('User found by email:', user);
+        console.log('Liked recipes:', user.liked_recipes);
+
+        const recommendations = await ReccommendationService.generateReccommendations(userEmail, user.liked_recipes);
+        return res.status(200).json({ recommendations });
+    } catch (err) {
+        console.error('Error finding user:', err);
+        return res.status(500).json({ message: 'An error occurred while finding the user.' });
+    }
+};
+
+
 // const updateLike = async (req, res) => {
 //     const { recipeId } = req.params;
 //       const { like } = req.body;
@@ -176,8 +200,8 @@ function generateResetToken() {
 }
 
 
-const verifyToken = (req,res,next) => {
-    const cookies = req.cookies;
+const verifyToken = (req, res, next) => {
+    const cookies = req.headers.cookie;
     if (!cookies) {
         return res.status(404).json({ message: "Cookies not found" });
     }
@@ -185,15 +209,17 @@ const verifyToken = (req,res,next) => {
     if (!token) {
         return res.status(404).json({ message: "Token not found" });
     }
-    jwt.verify(String(token), JWT_SECRET_KEY, (err,user) => {
-        if (err){
-            return res.status(400).json({message: "Invalid Token"})
+    jwt.verify(String(token), JWT_SECRET_KEY, (err, user) => {
+        if (err) {
+            return res.status(400).json({ message: "Invalid Token" });
         }
         console.log(user.id);
         req.id = user.id;
+        req.email = user.email; // Extract and set the email
+        next();
     });
-    next();
 };
+
 
 const getUser = async(req, res, next) => {
     const userId = req.id;
@@ -263,5 +289,6 @@ module.exports = {
     forgotPassword,
     verifyToken,
     getUser,
-    refreshToken
+    refreshToken,
+    getReccommendations,
 };

@@ -4,7 +4,8 @@ import { BiHeart } from 'react-icons/bi';
 // import { BiSolidFilePdf } from "react-icons/bi";
 import { Link } from 'react-router-dom';
 import '../style/selfstyling.css'
-import icon from '../assets/icon.png';
+// import icon from '../assets/icon.png';
+import khana from '../assets/khana1.jpg'
 // import { PDFViewer, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 // import { withRouter } from 'react-router-dom';
 // import { useHistory } from 'react-router-dom';
@@ -17,6 +18,10 @@ function Ibar() {
     const addIngredient = () => {
         setIngredients([...ingredients, ""]);
     };
+
+    const usercookie = JSON.parse(Cookies.get('usercookie'));
+    // console.log('Cookie user:', usercookie); // Log the cookie recipe to check its value
+    const useridd=usercookie.id;
 
     const handleIngredientChange = (index, value) => {
         const newIngredients = [...ingredients];
@@ -120,15 +125,15 @@ function Ibar() {
     const handleLike = (recipeId) => {
         const newLike = 1;
         console.log(recipeId);
-        axios.put(`http://localhost:5000/updateLike/${recipeId}`, { like: newLike })
+        axios.put(`http://localhost:5000/updateLike/${recipeId}`, {like: newLike, userid:useridd })
           .then(response => {
             console.log('Recipe liked successfully:', response.data);
           })
           .catch(err => console.error('Error updating like:', err));
     };
-    /////////
+
     const handlerank = (recipeId, selectedRating) => {
-        axios.put(`http://localhost:5000/updateRank/${recipeId}`, { rating: selectedRating })
+        axios.put(`http://localhost:5000/updateRank/${recipeId}`, {rating: selectedRating, userid:useridd})
             .then(response => {
                 console.log('Rating updated successfully:', response.data);
             })
@@ -136,48 +141,66 @@ function Ibar() {
     };
 
     return (
-        <div>
-            <div className="container afc">
-                <h1>Enter Ingredients</h1>
-                {ingredients.map((ingredient, index) => (
+        <div className = 'gen_bg'>
+            <div className = "main-gen-content-wrapper">
+                <div className="container afc">
+                    <h1>Enter Ingredients</h1>
+                    {ingredients.map((ingredient, index) => (
                     <div className="input-group mb-3" key={index}>
                         <span className="input-group-text" id={`inputGroup-sizing-default-${index}`}>Ingredient {index + 1}</span>
-                        <input
-                            type="text"
-                            className="form-control af"
-                            aria-label={`Sizing example input ${index}`}
-                            aria-describedby={`inputGroup-sizing-default-${index}`}
-                            value={ingredient}
-                            onChange={(e) => handleIngredientChange(index, e.target.value)}
-                        />
-                        <button type="button" className="btn btn-danger" onClick={() => removeIngredient(index)}>X</button>
+                            <input
+                                type="text"
+                                className="form-control af"
+                                aria-label={`Sizing example input ${index}`}
+                                aria-describedby={`inputGroup-sizing-default-${index}`}
+                                value={ingredient}
+                                onChange={(e) => handleIngredientChange(index, e.target.value)}
+                            />
+                            <button type="button" className="btn btn-danger" onClick={() => removeIngredient(index)}>X</button>
                     </div>
-                ))}
-                <button type="button" className="btn1" onClick={addIngredient}>Add Ingredient</button>
-                <button type="button" className="btn2" onClick={generateRecipe}>Generate Recipe</button>
-            </div>
-            {/* Available Recipe */}
-            <div className="container2">
-                <div className="recipe-container">
-            <h1>Available Recipes</h1>
-            <p className="recipe_matches">{getMatchedRecipes().length} matched recipes found.</p>
-            {getMatchedRecipes().length > 0 ? (
-                <table className="recipe-table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">RECIPE NAME</th>
-                            {/* <th>pdf key lyeye</th> */}
-                            <th></th>
-                            <th></th>
-                            {/* <th></th> */}
-                            {/* <th scope="col">Ingredients</th> */}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {getMatchedRecipes().slice(0, 1000).map((recipe, index) => (
+                    ))}
+                    <div className = 'gen_btns'>
+                        <button type="button" className="gen_btn1" onClick={addIngredient}>Add Ingredient</button>
+                        <button type="button" className="gen_btn2" onClick={generateRecipe}>Generate Recipe</button>
+                    </div>
+                        </div>
+                        {/* Available Recipe */}
+                        <div className="container2">
+                            <div className="recipe-container">
+                        <h1>Available Recipes</h1>
+                        <p className="recipe_matches">{getMatchedRecipes().length} matched recipes found.</p>
+                        {getMatchedRecipes().length > 0 ? (
+                            <table className="recipe-table">
+                                <thead>
+                                    <tr>
+                                        {/* <th scope="col">#</th> */}
+                                        <th scope="col">RECIPE NAME</th>
+                                        {/* <th>pdf key lyeye</th> */}
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        {/* <th scope="col">Ingredients</th> */}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {getMatchedRecipes().slice(0, 1000).map((recipe, index) => (
                             <tr key={recipe._id}>
-                                <th scope="row">{index + 1}</th>
+                                {/* <th scope="row">{index + 1}</th> */}
+                                <td>
+                                {(() => {
+                                        try {
+                                        return (
+                                            <img
+                                            src={require(`../assets/FoodImages/${recipe.Image_Name}.jpg`)}
+                                            alt="Recipe"
+                                            />
+                                        );
+                                        } catch (error) {
+                                        // console.error(error); // Log the error for debugging
+                                        return (<img src={khana} alt="Icon" />);
+                                        }
+                                    })()}
+                                </td>
                                 <td>{recipe.Title}
                                     <div style={{ fontSize: '14px'}}>
                                         ({recipe.matchedIngredientCount} matched ingredients)
@@ -213,29 +236,15 @@ function Ibar() {
                                             <option value="5">5</option>
                                         </select>
                                 </td>
-                                {/* <td>
-                                    {(() => {
-                                        try {
-                                        return (
-                                            <img
-                                            src={require(`../assets/FoodImages/${recipe.Image_Name}.jpg`)}
-                                            alt="Recipe"
-                                            />
-                                        );
-                                        } catch (error) {
-                                        // console.error(error); // Log the error for debugging
-                                            return (<img src={icon} alt="Icon" />);
-                                        }
-                                    })()}
-                                    </td> */}
                             </tr>
                         ))}
-                    </tbody>
-                </table>
-            ) : (
-                <p></p>
-            )}
-        </div>
+                                </tbody>
+                            </table>
+                        ) : (
+                            <p></p>
+                        )}
+                    </div>
+                </div>
             </div>
         </div>
     );

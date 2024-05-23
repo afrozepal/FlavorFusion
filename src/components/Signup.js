@@ -3,6 +3,8 @@ import { Nav } from './nav';
 import mainImgSu from '../assets/signupimg.jpg'; 
 import '../style/login.css'; 
 import axios from 'axios'; // Import Axios for making HTTP requests
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+
 
 function Signup() {
   const [username, setUsername] = useState('');
@@ -11,7 +13,7 @@ function Signup() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
+  const navigate = useNavigate()
   const handleSubmit = async (event) => {
     event.preventDefault();
   
@@ -37,6 +39,7 @@ function Signup() {
       setConfirmPassword('');
       setErrorMessage('');
       alert('Account created successfully! Please log in.');
+      navigate('/Login');
     } catch (error) {
       console.error('Error creating account:', error);
       setErrorMessage('Error creating account. Please try again later.');
@@ -51,9 +54,9 @@ function Signup() {
           <img src={mainImgSu} alt="Login Image Not Displayed" className="img-fluid" />
         </div>
         <div className="col-lg-6 mt-3">
-          <div className="card">
+          <div className="card fdc">
             <div className="card-body">
-              <h5 className="card-title mb-3">Sign Up</h5>
+              <h4 className="card-title mb-3">Sign Up</h4>
               <h6 className="mb-4">Already have an account? <a href="/">Log In!</a></h6>
               <form onSubmit={handleSubmit}>
                 <div className="row mb-3">

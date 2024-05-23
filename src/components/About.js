@@ -4,9 +4,9 @@ import '../style/stylingabout.css'
 import img1 from '../assets/danaa2.jpeg'
 import img2 from '../assets/samreen2.jpeg'
 import img3 from '../assets/afroze.jpeg'
-import img4 from '../assets/recipe1.jpg'
-import img5 from '../assets/recipe4.jpg'
-import img6 from '../assets/recipe3.jpg'
+import img4 from '../assets/forkmirchi.jpeg'
+import img5 from '../assets/masala.jpeg'
+import img6 from '../assets/macarons.jpeg'
 const About = () => {
   return (
     <>
@@ -59,13 +59,13 @@ const About = () => {
     </div>
 
     <div className="post">
-      <img src={img5} alt="Recipe 2" />
+      <img src={img6} alt="Recipe 2" />
       {/* <h3>Recipe 2</h3> */}
       <p>want something sweet</p>
     </div>
 
     <div className="post">
-      <img src={img6}  alt="Recipe 3" />
+      <img src={img5}  alt="Recipe 3" />
       {/* <h3>Recipe 3</h3> */}
       <p>spice magic</p>
     </div>

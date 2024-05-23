@@ -1,23 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './style/index.css'
+import './style/index.css';
 import App from './script/App.js';
 import Login from './components/Login.js';
 import Signup from './components/Signup.js';
-import Homepage from './components/Homepage.js'
+import Homepage from './components/Homepage.js';
 import reportWebVitals from './script/reportWebVitals.js';
 import ForgotPassword from './components/ForgotPassword.js';
 import About from './components/About.js';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux'; // Import useSelector
 import store from './Store/store.js'; 
-import Generator from './pages/Page2.js';
-import Contact from './components/Contact.js'
-import RecipeDetail from './components/RecipeDetail.js'
+import Generator from './pages/Generator.js';
+import Contact from './components/Contact.js';
+import RecipeDetail from './components/RecipeDetail.js';
+import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import LikedRecipes from './pages/LikedRecipes.js';
 
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+// Custom Route component to conditionally render routes
+const CustomRoute = ({ path, element }) => {
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn); // Get login state from Redux store
+  console.log("REDUX: ", isLoggedIn)
+  // Render route only if logged in or path is one of Login, Signup, or ForgotPassword
+  if (!isLoggedIn && !["/Login", "/Signup", "/ForgotPassword"].includes(path)) {
+    return null;
+  }
+
+  return <Route path={path} element={element} />;
+};
 
 const router = createBrowserRouter([
   {
@@ -55,6 +64,10 @@ const router = createBrowserRouter([
   {
     path: "RecipeDetail",
     element:<RecipeDetail/>
+  },
+  {
+    path: "LikedRecipes",
+    element:<LikedRecipes/>
   }
 ]);
 
@@ -63,7 +76,17 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router}></RouterProvider>
+      <RouterProvider router={router}>
+        <CustomRoute path="/" element={<App />} />
+        <CustomRoute path="/Login" element={<Login />} />
+        <CustomRoute path="/Signup" element={<Signup />} />
+        <CustomRoute path="/ForgotPassword" element={<ForgotPassword />} />
+        <CustomRoute path="/Homepage" element={<Homepage />} />
+        <CustomRoute path="/About" element={<About />} />
+        <CustomRoute path="/Generator" element={<Generator />} />
+        <CustomRoute path="/Contact" element={<Contact />} />
+        <CustomRoute path="/RecipeDetail" element={<RecipeDetail />} />
+      </RouterProvider>
     </Provider>
   </React.StrictMode>
 );

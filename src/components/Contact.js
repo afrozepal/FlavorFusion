@@ -30,17 +30,17 @@ const Contact = () => {
           </div>
           <div className="row">
             <div className="col-md-12">
-            <a href="mailto:chsamreen370@gmail.com"><FaEnvelope /> example@example.com</a>
+            <a href="mailto:chsamreen370@gmail.com" className="contact-link"><FaEnvelope /> FlavourFusion@gmail.com</a>
             </div>
           </div>
           <div className="row">
             <div className="col-md-12">
-            <a href="https://its_samreenriaz.com"><FaInstagram /> instagram.com/example</a>
+            <a href="https://its_samreenriaz.com" className="contact-link"><FaInstagram /> instagram.com/FlavourFusion</a>
             </div>
           </div>
           <div className="row">
               <div className="col-md-12">
-                <a href="https://linkedin.com/in/samreen-riaz-897ab5253"><FaLinkedin /> linkedin.com/in/example</a>
+                <a href="https://linkedin.com/in/samreen-riaz-897ab5253" className="contact-link"><FaLinkedin /> linkedin.com/in/FlavourFusion</a>
               </div>
             </div>
         </div>

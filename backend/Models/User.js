@@ -17,19 +17,19 @@ const userSchema = new Schema({
         // minlength: 6s
     },
     rating: {
-        type: String,
+        type: [String],
         required: false,
-        default: '0'
+        default: []
     },
     liked_recipes: {
-        type: String,
+        type: [String],
         required: false,
-        default: '0'
+        default: []
     },
     searched_ingredients: {
-        type: String,
+        type: [String],
         required: false,
-        default: '0'
+        default: []
     }
 });
 

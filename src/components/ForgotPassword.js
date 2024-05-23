@@ -97,7 +97,7 @@ export default function ForgotPassword() {
           <img src={fpimg} alt="Login Img Not Displayed" className="img-fluid" />
         </div>
         <div className="col-lg-6 mt-3">
-          <div className="card">
+          <div className="card fdc">
             <div className="card-body">
               <div className='login-heading'>
                 <h4 className="card-title mb-3">Change Password</h4>

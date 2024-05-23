@@ -1,8 +1,11 @@
 import React from "react";
 import icon from '../assets/icon.png';
 import '../style/App.css'
+import {useLocation} from 'react-router-dom'
 
 function Nav() {
+  const location = useLocation();
+  const isRestrictedPage = ['/','/Login', '/Signup', '/ForgotPassword'].includes(location.pathname);
     return (
         <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
@@ -10,18 +13,21 @@ function Nav() {
             <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a className="navbar-brand" href="/">Flavour Fusion</a>       
+            <span className="navbar-brand extrass">Flavour Fusion</span>       
             </div>
             <ul className="nav justify-content-end">
-                <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/Homepage">Home</a>
-                </li>
-                <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/About">About</a>
-                </li>
-                <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/Contact">Contact</a>
-                </li>
+              <li className="nav-item">
+                {/* <a className={`nav-link ${isRestrictedPage ? 'disabled' : ''}`} aria-current="page" href="/Homepage">Home</a> */}
+                <a className="nav-link" href="/Homepage">Home</a>
+              </li>
+              <li className="nav-item">
+              <a className="nav-link" href="/About">About</a>
+                {/* <a className={`nav-link ${isRestrictedPage ? 'disabled' : ''}`} aria-current="page" href="/About">About</a> */}
+              </li>
+              <li className="nav-item">
+              <a className="nav-link" href="/Contact">Contact</a>
+                {/* <a className={`nav-link ${isRestrictedPage ? 'disabled' : ''}`} aria-current="page" href="/Contact">Contact</a> */}
+              </li>
             </ul>
             <img src={icon} className="imageicon" alt="Icon" />
         </div>
@@ -47,13 +53,16 @@ function Nav2() {
           <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">Profile</a>
+                <a className="nav-link active" aria-current="page" href="/Generator">Generate A Recipe</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="/LikedRecipes">View Liked Recipes</a>
               </li>
               {/* <li className="nav-item">
                 <a className="nav-link" href="/">Update Payment Plan</a>
               </li> */}
               <li className="nav-item">
-                <a className="nav-link" href="/Generator">Generate Recipe</a>
+                <a className="nav-link" href="/Login">Logout</a>
               </li>
               {/* <li className="nav-item">
                 <a className="nav-link" href="/Login">Log Out</a>

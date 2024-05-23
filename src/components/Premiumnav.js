@@ -1,6 +1,6 @@
 import React from "react";
-import icon from './icon.png';
-import { Link } from "react-router-dom";
+import icon from '../assets/icon.png';
+// import { Link } from "react-router-dom";
 
 function PNav() {
     return (
@@ -45,17 +45,22 @@ function PNav2() {
             <button type="button" className="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div className="offcanvas-body">
-            <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">Profile</a>
+                <a className="nav-link active" aria-current="page" href="/Generator">Generate A Recipe</a>
               </li>
               <li className="nav-item">
-                {/* <a className="nav-link" href="Page2">Update Payment Plan</a> */}
-                <Link to="/Page2">Update Payment Plan</Link>
+                <a className="nav-link active" aria-current="page" href="/LikedRecipes">View Liked Recipes</a>
               </li>
+              {/* <li className="nav-item">
+                <a className="nav-link" href="/">Update Payment Plan</a>
+              </li> */}
               <li className="nav-item">
-                <a className="nav-link" href="/">Leave Review</a>
+                <a className="nav-link" href="/Login">Logout</a>
               </li>
+              {/* <li className="nav-item">
+                <a className="nav-link" href="/Login">Log Out</a>
+              </li> */}
             </ul>
           </div>
         </div>
