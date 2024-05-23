@@ -146,7 +146,7 @@ export default function ForgotPassword() {
                   </div>
                   <button type="submit" className="btn btn-primary">Update Password</button>
                 </div>
-                <div className="container mt-2">
+                <div className="container cd mt-2">
                   <div className="row justify-content-right align-items-right" >
                     <div className="col-auto">
                       <span className="content forgot-password"><a href='/'>Back to Login</a></span>
